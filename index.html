@@ -3,8 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <title>Element Study</title>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="./Style/index.css">
 </head>
 <body>
+    <div id="app">
+        <h1>同学录</h1>
+        <div class="head">
+            <el-row :gutter="20">
+                <el-col :span="6">
+                    <el-input v-model="input" placeholder="请输入姓名"></el-input>
+                </el-col>
+                <el-col :span="6">
+                    <el-input v-model="input" placeholder="请输入性别"></el-input>
+                </el-col>
+                <el-col :span="6">
+                    <el-input v-model="input" placeholder="请输入电话"></el-input>
+                </el-col>
+                <el-col :span="6">
+                    <el-input v-model="input" placeholder="请输入出生日期"></el-input>
+                </el-col>
 
+            </el-row>
+        </div>
+
+
+    </div>
+<!-- import Vue before Element -->
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<!-- import JavaScript -->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script src="./Script/index.js"></script>
 </body>
 </html>
