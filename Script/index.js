@@ -10,6 +10,15 @@ new Vue({
                 phoneNum:'',
                 birthDay:''
             },
+            dialogVisible:false,
+            editObj:{
+                name:'',
+                gander:'',
+                phoneNum:'',
+                birthDay:''
+            },
+            UserIndex:'',
+            item:{},
             tableData: [{
                 name:'王小虎',
                 gander:'男',
@@ -49,6 +58,43 @@ new Vue({
                     this.tableData.splice(index,1)
                 })
                 .catch(_ => {});
+        },
+        //修改一条数据
+        updateUser(item,index){
+            this.UserIndex=index
+            this.item=item
+            console.log(item)
+             this.dialogVisible=true,
+             this.editObj={
+                name:item.name,
+                gander:item.gander,
+                phoneNum:item.phoneNum,
+                birthDay:item.birthDay
+            }
+        },
+        handleClose(){
+            this.dialogVisible=false;
+        },
+        comfirm(){
+            //判断用户输入的数据是否正确
+            console.log(this.editObj)
+            if(!this.editObj.name || !this.editObj.gander || !this.editObj.phoneNum || !this.editObj.birthDay){
+                this.editObj=this.item
+                alert("请输入完整信息!")
+                return
+            }
+            if(this.editObj.gander!='男' && this.editObj.gander!='女'){
+                alert("请输入正确的性别!");
+                this.editObj.gander=this.item.gander
+                return;
+            }
+            if(!/^1[3456789]\d{9}$/.test(this.editObj.phoneNum)){
+                alert("请输入正确的电话号码!")
+                this.editObj.phoneNum=this.item.phoneNum
+                return;
+            }
+            this.dialogVisible=false;
+            Vue.set(this.tableData,this.UserIndex,this.editObj)
         }
     }
 })
